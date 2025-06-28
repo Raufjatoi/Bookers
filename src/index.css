@@ -1,0 +1,147 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Crimson+Text:wght@400;600&family=Libre+Baskerville:wght@400;700&display=swap');
+
+/* Design system with literary-inspired colors */
+@layer base {
+  :root {
+    --background: 45 15% 97%;
+    --foreground: 30 15% 15%;
+
+    --card: 42 20% 95%;
+    --card-foreground: 30 15% 15%;
+
+    --popover: 45 15% 97%;
+    --popover-foreground: 30 15% 15%;
+
+    --primary: 25 35% 25%;
+    --primary-foreground: 45 15% 97%;
+
+    --secondary: 35 15% 85%;
+    --secondary-foreground: 30 15% 15%;
+
+    --muted: 40 10% 90%;
+    --muted-foreground: 30 10% 45%;
+
+    --accent: 20 40% 45%;
+    --accent-foreground: 45 15% 97%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 25 35% 25%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 30 15% 8%;
+    --foreground: 45 15% 95%;
+    --card: 30 15% 10%;
+    --card-foreground: 45 15% 95%;
+    --popover: 30 15% 8%;
+    --popover-foreground: 45 15% 95%;
+    --primary: 45 15% 95%;
+    --primary-foreground: 30 15% 8%;
+    --secondary: 30 10% 15%;
+    --secondary-foreground: 45 15% 95%;
+    --muted: 30 10% 15%;
+    --muted-foreground: 40 10% 60%;
+    --accent: 20 40% 65%;
+    --accent-foreground: 30 15% 8%;
+    --border: 30 10% 20%;
+    --input: 30 10% 20%;
+    --ring: 45 15% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-serif;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(139, 119, 101, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(101, 67, 33, 0.03) 0%, transparent 50%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-serif {
+    font-family: 'Crimson Text', serif;
+  }
+
+  .font-elegant {
+    font-family: 'Libre Baskerville', serif;
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .animate-book-open {
+    animation: bookOpen 1s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bookOpen {
+    from {
+      transform: rotateY(-30deg);
+      opacity: 0;
+    }
+    to {
+      transform: rotateY(0deg);
+      opacity: 1;
+    }
+  }
+
+  .book-shadow {
+    box-shadow: 
+      0 4px 8px rgba(139, 119, 101, 0.15),
+      0 8px 16px rgba(101, 67, 33, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .paper-texture {
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(139, 119, 101, 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+}
