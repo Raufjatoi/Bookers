@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { BookOpen, Users, Clock, Mail, Phone, MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { getFeaturedPrototypes, removeFeaturedPrototype, type FeaturedPrototype } from "@/utils/featuredPrototypes";
+import { useToast } from "@/hooks/use-toast";
 
 const sampleBooks = [
   {
@@ -20,8 +21,25 @@ const sampleBooks = [
     themes: ["The pursuit of love and relationships", "Self-discovery and growth", "The importance of self-love and acceptance"],
     fullDescription: "A-nya, a hopeless romantic in her twenties, feels lost after her ex-boyfriend Taro leaves her for someone else. Despite Lila’s support, she can’t stop yearning for her soulmate. Through reflection and new encounters, A-nya finally learns to embrace herself and discovers love where she least expects it.",
     targetAudience: "Adults 18-25, Girls, People who are finding True love ",
+    estimatedBudget: "$1000 - $1200",
+    timeline: "4-6 months",
+    contactEmail: "raufpokemon00@gmail.com",
+    contactNote: "Looking for investors and publishing partners. Open for collaboration"
+  },
+    {
+    id: "sample-2",
+    title: "Beyond the Cosmic Rift",
+    author: "Rp",
+    genre: "Science Fiction",
+    hook: "When Earth's remnants collide with a distant galaxy, the survivors must navigate a treacherous alien landscape and forge unlikely alliances to prevent the annihilation of the universe.",
+    status: "Seeking Investors",
+    pages: 320,
+    words: 80000,
+    themes: ["Survival and Resilience", "Cooperation and Conflict", "Redemption and Sacrifice"],
+    fullDescription: "After Earth’s destruction, Aurora leads survivors into alien territories. They forge fragile alliances while Kael’s hidden motives unfold. As cosmic war escalates, impossible choices decide the universe’s survival or doom.",
+    targetAudience: "Adults 18-25, Girls, People who are finding True love ",
     estimatedBudget: "$1500 - $2000",
-    timeline: "12-18 months",
+    timeline: "10-12 months",
     contactEmail: "raufpokemon00@gmail.com",
     contactNote: "Looking for investors and publishing partners. Open for collaboration"
   },
@@ -30,6 +48,7 @@ const sampleBooks = [
 const BookShowcase = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [userPrototypes, setUserPrototypes] = useState<FeaturedPrototype[]>([]);
+  const { toast } = useToast();
 
   useEffect(() => {
     setUserPrototypes(getFeaturedPrototypes());
@@ -38,6 +57,35 @@ const BookShowcase = () => {
   const handleRemovePrototype = (id: string) => {
     removeFeaturedPrototype(id);
     setUserPrototypes(getFeaturedPrototypes());
+  };
+
+  const handleContactAuthor = (email: string) => {
+    window.location.href = `mailto:${email}?subject=Interested in your book prototype`;
+    toast({
+      title: "Email client opened",
+      description: "Connecting you with the author",
+    });
+  };
+
+  const handleSendMessage = (book: any) => {
+    // Open a messaging dialog or redirect to a messaging platform
+    toast({
+      title: "Message feature",
+      description: `You're connecting with ${book.author} about "${book.title}"`,
+    });
+    
+    // For demo purposes, we'll just show a toast
+    // In a real app, you might open a chat interface or redirect to a messaging platform
+  };
+
+  const handleScheduleCall = (book: any) => {
+    // Open a calendar scheduling tool or redirect to a scheduling platform
+    window.open('https://calendly.com', '_blank');
+    
+    toast({
+      title: "Scheduling a call",
+      description: `Opening scheduling tool to connect with ${book.author}`,
+    });
   };
 
   const allBooks = [...userPrototypes, ...sampleBooks];
@@ -184,24 +232,29 @@ const BookShowcase = () => {
                     <p className="text-sm text-muted-foreground mb-4">{book.contactNote}</p>
                     
                     <div className="flex flex-col sm:flex-row gap-3">
-                      <Button className="flex items-center gap-2">
+                      <Button 
+                        className="flex items-center gap-2"
+                        onClick={() => handleContactAuthor(book.contactEmail)}
+                      >
                         <Mail className="w-4 h-4" />
                         Contact Author
                       </Button>
-                      <Button variant="outline" className="flex items-center gap-2">
+                      <Button 
+                        variant="outline" 
+                        className="flex items-center gap-2"
+                        onClick={() => handleSendMessage(book)}
+                      >
                         <MessageCircle className="w-4 h-4" />
                         Send Message
                       </Button>
-                      <Button variant="outline" className="flex items-center gap-2">
+                      <Button 
+                        variant="outline" 
+                        className="flex items-center gap-2"
+                        onClick={() => handleScheduleCall(book)}
+                      >
                         <Phone className="w-4 h-4" />
                         Schedule Call
                       </Button>
-                    </div>
-
-                    <div className="mt-4 p-3 bg-accent/10 rounded-lg">
-                      <p className="text-xs text-muted-foreground">
-                        <strong>Contact:</strong> {book.contactEmail}
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -227,3 +280,5 @@ const BookShowcase = () => {
 };
 
 export default BookShowcase;
+
+

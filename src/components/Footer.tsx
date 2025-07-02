@@ -1,5 +1,5 @@
-
 import { Book, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -32,10 +32,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Community</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Writers Hub</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Investor Portal</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Publishing Partners</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Support</a></li>
+              <li><Link to="/writers-hub" className="hover:text-primary-foreground transition-colors">Writers Hub</Link></li>
+              <li><Link to="/investor-portal" className="hover:text-primary-foreground transition-colors">Investor Portal</Link></li>
+              <li><Link to="/publishing-partners" className="hover:text-primary-foreground transition-colors">Publishing Partners</Link></li>
+              <li><Link to="/support" className="hover:text-primary-foreground transition-colors">Support</Link></li>
             </ul>
           </div>
         </div>
@@ -62,3 +62,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
